@@ -7,8 +7,8 @@ using namespace EuroScopePlugIn;
 
 namespace
 {
-const int kIndicatorVerticalOffset = 8;
-const int kTrackColorSampleRadius = 6;
+const int kIndicatorVerticalOffset = 4;
+const int kTrackColorSampleRadius = 2;
 const char kSModeIndicatorText[] = "S";
 
 bool TryGetRenderedTrackColor(HDC hDC, const POINT &trackPoint, COLORREF *color)
@@ -68,7 +68,7 @@ public:
     SModePlugin()
         : CPlugIn(COMPATIBILITY_CODE,
                   "S-Mode Plugin",
-                  "1.0.0",
+                  "1.0.1",
                   "Maghreb vACC",
                   "GPL 3.0")
     {
@@ -138,7 +138,7 @@ void SModeScreen::DrawIndicator(HDC hDC, const CRadarTarget &target)
         CLIP_DEFAULT_PRECIS,
         DEFAULT_QUALITY,
         DEFAULT_PITCH | FF_SWISS,
-        "Arial");
+        "./EuroScope.tff");
 
     HFONT oldFont = font != nullptr ? static_cast<HFONT>(SelectObject(hDC, font)) : nullptr;
     const COLORREF oldTextColor = SetTextColor(hDC, color);
